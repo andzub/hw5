@@ -34,21 +34,17 @@ echo mainMenu($menu) . '<br>';
 echo mainMenu($menu, false);
 echo '<hr>';
 
-// echo '<h2>task 3</h2>';
-// include 'categories_example.php';
-// function treeCat($categories) {
-//   if ($categories) {
-//       foreach ($categories as $key => $category) {
-//         if ($category->id == $category->parent_id) {
-//           foreach ($variable as $key => $value) {
-//
-//           }
-//         }
-//       }
-//   }
-// }
-// echo '<hr>';
-// echo '<hr>';
-// echo '<hr>';
-// print_r(treeCat($categories_data));
+echo '<h2>task 3</h2>';
+include 'categories_example.php';
+function treeCat($categories, $parent_id = 0) {
+  if ($categories) {
+      foreach ($categories as $category) {
+        if ($category->parent_id != $parent_id) {
+            treeCat($category->subcategories);
+        }
+      }
+  }
+  return $categories;
+}
+print_r(treeCat($categories_data));
 ?>
